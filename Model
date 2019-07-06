@@ -1,0 +1,18 @@
+rm(list = ls())
+## Read dataset
+bank_new <- read.csv("bank.csv")
+
+## Split data into train & test datasets.
+split_bank_new <- sample.split(bank_new,SplitRatio = 0.7)
+train_bank <- subset(bank_new,split_bank_new==TRUE)
+test_bank <- subset(bank_new,split_bank_new==FALSE)
+
+## Creating logistic regression model
+bank_model_2 <- glm("RESPONSE ~ CHK_ACCT + DURATION + HISTORY + USED_CAR + AMOUNT + 
+                   SAV_ACCT  + INSTALL_RATE +  GUARANTOR + PRESENT_RESIDENT + 
+                   REAL_ESTATE + PROP_UNKN_NONE + AGE + RENT + 
+                   OWN_RES + NUM_CREDITS + JOB + NUM_DEPENDENTS + TELEPHONE + 
+                   FOREIGN",data = train_bank,family = "binomial")
+train_bank_pred2 <- predict(bank_model_2,test_bank)
+cm3 <- table(train_bank$RESPONSE,train_bank_pred2>0.5)
+cm3
