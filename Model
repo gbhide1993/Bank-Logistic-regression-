@@ -14,5 +14,7 @@ bank_model_2 <- glm("RESPONSE ~ CHK_ACCT + DURATION + HISTORY + USED_CAR + AMOUN
                    OWN_RES + NUM_CREDITS + JOB + NUM_DEPENDENTS + TELEPHONE + 
                    FOREIGN",data = train_bank,family = "binomial")
 train_bank_pred2 <- predict(bank_model_2,test_bank)
+
+## Creating confusion matrix
 cm3 <- table(train_bank$RESPONSE,train_bank_pred2>0.5)
 cm3
