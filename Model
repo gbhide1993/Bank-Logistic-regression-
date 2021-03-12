@@ -1,4 +1,17 @@
-rm(list = ls())
+library(caret)
+library(rpart)
+library(dplyr)
+library(randomForest)
+library(glmnet)
+library(caTools)
+library(tidyr)
+library(xgboost)
+library(tidyverse)
+library(broom)
+library(ggplot2)
+library(Metrics)
+library(e1071)
+
 ## Read dataset
 bank_new <- read.csv("bank.csv")
 
